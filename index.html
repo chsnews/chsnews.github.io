@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHS News | Unofficial School Updates</title>
     <style>
-        /* Modern CSS Reset & Variable Variables */
         :root {
             --primary-green: #1e4620;
             --accent-green: #2e6f40;
@@ -28,7 +27,6 @@
             line-height: 1.6;
         }
 
-        /* Navigation Bar */
         nav {
             background-color: var(--primary-green);
             color: var(--white);
@@ -47,40 +45,14 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
+        .logo { font-size: 1.5rem; font-weight: 700; }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            opacity: 0.9;
-            transition: opacity 0.2s;
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-            text-decoration: underline;
-        }
-
-        /* Main Layout Container */
         main {
             max-width: 1100px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
 
-        /* Hero Banner */
         .hero {
             background-color: var(--light-green);
             border-left: 5px solid var(--accent-green);
@@ -89,17 +61,8 @@
             margin-bottom: 2.5rem;
         }
 
-        .hero h2 {
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
-        }
+        .hero h2 { color: var(--primary-green); margin-bottom: 0.5rem; }
 
-        .hero p {
-            font-size: 1.1rem;
-            color: #4a5568;
-        }
-
-        /* News Section & Grid */
         .section-title {
             font-size: 1.75rem;
             color: var(--primary-green);
@@ -115,24 +78,15 @@
             margin-bottom: 3rem;
         }
 
-        /* Article Cards */
         .card {
             background-color: var(--white);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0;
-            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
+        .card-content { padding: 1.5rem; }
 
         .card-tag {
             background-color: var(--light-green);
@@ -146,46 +100,28 @@
             margin-bottom: 0.75rem;
         }
 
-        .card-title {
-            font-size: 1.25rem;
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
-        }
+        .card-title { font-size: 1.25rem; color: var(--primary-green); margin-bottom: 0.5rem; }
+        .card-date { font-size: 0.85rem; color: #718096; margin-bottom: 1rem; }
 
-        .card-date {
-            font-size: 0.85rem;
-            color: #718096;
-            margin-bottom: 1rem;
-        }
-
-        /* Footer */
         footer {
             background-color: #2d3748;
             color: #a0aec0;
             text-align: center;
             padding: 2rem;
             font-size: 0.9rem;
-            margin-top: auto;
+            margin-top: 5rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation -->
     <nav>
         <div class="nav-container">
             <div class="logo">CHS News</div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Updates</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
         </div>
     </nav>
 
-    <!-- Main Content Area -->
     <main>
-        <!-- Welcome Banner -->
         <section class="hero">
             <h2>The Unofficial CHS News Hub</h2>
             <p>Keeping you updated on the current state of the school. Built by students, for students.</p>
@@ -193,46 +129,47 @@
 
         <h3 class="section-title">Latest Updates</h3>
         
-        <!-- Grid layout for your future articles -->
-        <div class="news-grid">
-            
-            <!-- Card 1 -->
-            <article class="card">
-                <div class="card-content">
-                    <span class="card-tag">School State</span>
-                    <h4 class="card-title">Welcome to the New Website</h4>
-                    <p class="card-date">September 2, 2026</p>
-                    <p>We've successfully moved our hosting to an unblocked network platform to ensure everyone can stay informed.</p>
-                </div>
-            </article>
-
-            <!-- Card 2 -->
-            <article class="card">
-                <div class="card-content">
-                    <span class="card-tag">Bell Times</span>
-                    <h4 class="card-title">Upcoming Schedule Modifications</h4>
-                    <p class="card-date">September 2, 2026</p>
-                    <p>Keep an eye out for modified timetables next week due to upcoming school events and assemblies.</p>
-                </div>
-            </article>
-
-            <!-- Card 3 -->
-            <article class="card">
-                <div class="card-content">
-                    <span class="card-tag">Tech Tip</span>
-                    <h4 class="card-title">Bypassing Network Restrictions</h4>
-                    <p class="card-date">September 2, 2026</p>
-                    <p>Make sure to bookmark this clean URL layout so you can easily pull it up on any school-managed BYOD equipment.</p>
-                </div>
-            </article>
-
+        <!-- This grid starts empty and fills up automatically via JavaScript -->
+        <div class="news-grid" id="newsGrid">
+            <p>Loading news articles...</p>
         </div>
     </main>
 
-    <!-- Footer Note -->
     <footer>
         <p>&copy; 2026 CHS News. This site is completely unofficial and independent.</p>
     </footer>
 
+    <script>
+        // Fetch news directly from your dashboard's data file
+        fetch('./articles.json')
+            .then(response => response.json())
+            .then(data => {
+                const grid = document.getElementById('newsGrid');
+                grid.innerHTML = ''; // Clear loading text
+
+                if (!data.articles || data.articles.length === 0) {
+                    grid.innerHTML = '<p>No updates posted yet.</p>';
+                    return;
+                }
+
+                // Loop through posts backwards to show newest first
+                data.articles.reverse().forEach(article => {
+                    const card = document.createElement('article');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div class="card-content">
+                            <span class="card-tag">${article.category || 'Update'}</span>
+                            <h4 class="card-title">${article.title || 'Untitled'}</h4>
+                            <p class="card-date">${article.date || ''}</p>
+                            <p>${article.body || ''}</p>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            })
+            .catch(err => {
+                document.getElementById('newsGrid').innerHTML = '<p>Create your first post in Pages CMS to view updates!</p>';
+            });
+    </script>
 </body>
 </html>
