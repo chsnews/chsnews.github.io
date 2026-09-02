@@ -5,152 +5,248 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHS News | Unofficial School Updates</title>
     <style>
+        /* Modern CSS Variables & Elegant Palette */
         :root {
-            --primary-green: #1e4620;
-            --accent-green: #2e6f40;
-            --light-green: #eaf2eb;
-            --dark-text: #2d3748;
-            --light-bg: #f7fafc;
+            --green-gradient: linear-gradient(135deg, #0d2a10 0%, #1e4620 50%, #2e6f40 100%);
+            --hero-gradient: linear-gradient(135deg, #eaf2eb 0%, #f0f7f1 100%);
+            --accent-orange: #f38218;
+            --dark-text: #1a202c;
+            --muted-text: #4a5568;
+            --light-bg: #f8fafc;
             --white: #ffffff;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
             background-color: var(--light-bg);
             color: var(--dark-text);
-            line-height: 1.6;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
+        /* Sleek Top Navigation Bar */
         nav {
-            background-color: var(--primary-green);
+            background: var(--green-gradient);
             color: var(--white);
-            padding: 1rem 2rem;
+            padding: 1.25rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .nav-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
 
-        .logo { font-size: 1.5rem; font-weight: 700; }
-
-        main {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        .nav-logo-img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 2px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
-        .hero {
-            background-color: var(--light-green);
-            border-left: 5px solid var(--accent-green);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 2.5rem;
-        }
-
-        .hero h2 { color: var(--primary-green); margin-bottom: 0.5rem; }
-
-        .section-title {
-            font-size: 1.75rem;
-            color: var(--primary-green);
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.5rem;
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .card {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
-
-        .card-content { padding: 1.5rem; }
-
-        .card-tag {
-            background-color: var(--light-green);
-            color: var(--accent-green);
-            font-size: 0.75rem;
-            font-weight: 700;
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
             text-transform: uppercase;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            display: inline-block;
+        }
+
+        /* Main Workspace Container (Spacious Padding) */
+        main {
+            max-width: 1200px;
+            width: 100%;
+            margin: 3.5rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+        /* Elegant Gradient Hero Module */
+        .hero {
+            background: var(--hero-gradient);
+            border-left: 6px solid var(--accent-orange);
+            padding: 3rem;
+            border-radius: 16px;
+            margin-bottom: 4rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #0d2a10;
             margin-bottom: 0.75rem;
         }
 
-        .card-title { font-size: 1.25rem; color: var(--primary-green); margin-bottom: 0.5rem; }
-        .card-date { font-size: 0.85rem; color: #718096; margin-bottom: 1rem; }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--muted-text);
+            max-width: 700px;
+            font-weight: 400;
+        }
 
-        footer {
-            background-color: #2d3748;
+        /* Clean Section Title Layout */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0d2a10;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        /* Multi-Column High-End Grid System */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Premium Article Cards */
+        .card {
+            background-color: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .card-content {
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Dynamic Tags */
+        .card-tag {
+            background-color: #eaf2eb;
+            color: #1e4620;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.75px;
+            padding: 0.4rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.3px;
+        }
+
+        .card-date {
+            font-size: 0.85rem;
             color: #a0aec0;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-body-text {
+            color: var(--muted-text);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* Neutral Slate Footer */
+        footer {
+            background-color: #1a202c;
+            color: #718096;
             text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-            margin-top: 5rem;
+            padding: 3rem 2rem;
+            font-size: 0.95rem;
+            border-top: 1px solid #2d3748;
+        }
+        
+        footer p {
+            max-width: 600px;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body>
 
+    <!-- Main Navigation Module with Logo Wrapper -->
     <nav>
         <div class="nav-container">
-            <div class="logo">CHS News</div>
+            <img class="nav-logo-img" src="logo.png" alt="Caringbah High Shield Logo">
+            <div class="logo-text">CHS News</div>
         </div>
     </nav>
 
+    <!-- Main View Workspace -->
     <main>
         <section class="hero">
             <h2>The Unofficial CHS News Hub</h2>
-            <p>Keeping you updated on the current state of the school. Built by students, for students.</p>
+            <p>Keeping you updated on the current state of the school. Distributed independently by students, for students.</p>
         </section>
 
-        <h3 class="section-title">Latest Updates</h3>
+        <div class="section-header">
+            <h3 class="section-title">Latest Updates</h3>
+        </div>
         
+        <!-- Live Layout Data Target -->
         <div class="news-grid" id="newsGrid">
-            <p>Loading news updates...</p>
+            <p style="color: var(--muted-text); font-style: italic;">Syncing structural layout grids...</p>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 CHS News. This site is completely unofficial and independent.</p>
+        <p>&copy; 2026 CHS News Hub. This independent platform is entirely unofficial and unaffiliated with the school administration.</p>
     </footer>
 
     <script>
-        // REPLACE THE STRING BELOW WITH YOUR ENTIRE PUBLISHED GOOGLE SHEET CSV LINK
         const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-r5sFj0XGZpcFyqoRKNk-BH0gD-dGmFSXLUOsJlo8CJIVELYmIGee7rCJF0CK5rwP6jKC-ZQM2KNB/pub?output=csv';
 
-        // Simple CSV parser function to process the layout rows cleanly
         function parseCSV(text) {
             const lines = text.split('\n');
             const result = [];
+            if (lines.length === 0 || !lines[0]) return result;
             const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
-            
             for (let i = 1; i < lines.length; i++) {
                 if (!lines[i]) continue;
-                // Basic split handling quotes around content briefs
                 const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(cell => cell.trim().replace(/^"|"$/g, ''));
                 const obj = {};
                 for (let j = 0; j < headers.length; j++) {
@@ -161,7 +257,6 @@
             return result;
         }
 
-        // Fetch updates dynamically 
         fetch(sheetCsvUrl)
             .then(res => res.text())
             .then(csvData => {
@@ -170,28 +265,27 @@
                 grid.innerHTML = ''; 
 
                 if (articles.length === 0) {
-                    grid.innerHTML = '<p>No news articles found in data sheets.</p>';
+                    grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--muted-text);">No news items active in the data logs.</p>';
                     return;
                 }
 
-                // Show the newest spreadsheet rows first
                 articles.reverse().forEach(article => {
-                    if(!article.title) return; // Skip blank rows
+                    if(!article.title) return; 
                     const card = document.createElement('article');
                     card.className = 'card';
                     card.innerHTML = `
                         <div class="card-content">
-                            <span class="card-tag">${article.category || 'General'}</span>
+                            <span class="card-tag">${article.category || 'General Update'}</span>
                             <h4 class="card-title">${article.title}</h4>
-                            <p class="card-date">${article.date || ''}</p>
-                            <p>${article.body || ''}</p>
+                            <p class="card-date">${article.date || 'RECENT'}</p>
+                            <p class="card-body-text">${article.body || ''}</p>
                         </div>
                     `;
                     grid.appendChild(card);
                 });
             })
             .catch(err => {
-                document.getElementById('newsGrid').innerHTML = '<p>Error syncing data from updates panel.</p>';
+                document.getElementById('newsGrid').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #e53e3e;">Failed to secure automated data pipeline links.</p>';
             });
     </script>
 </body>
