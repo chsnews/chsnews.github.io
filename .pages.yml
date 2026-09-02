@@ -1,24 +1,27 @@
-# Tells Pages CMS to map articles directly onto index.html file
 media:
   input: .
   output: .
 
 content:
   - label: News Articles
-    type: collection
-    path: index.html
-    format: html
+    type: file
+    path: articles.json
+    format: json
     fields:
-      - label: Article Title
-        name: title
-        type: string
-      - label: Category Tag
-        name: category
-        type: select
-        options: [School State, Bell Times, Tech Tip]
-      - label: Post Date
-        name: date
-        type: string
-      - label: Main Content
-        name: body
-        type: text
+      - label: School News Feed
+        name: articles
+        type: list
+        fields:
+          - label: Article Title
+            name: title
+            type: string
+          - label: Category Tag
+            name: category
+            type: select
+            options: [School State, Bell Times, Tech Tip]
+          - label: Post Date
+            name: date
+            type: string
+          - label: Main Content
+            name: body
+            type: text
