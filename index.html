@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHS News | Unofficial School Updates</title>
+    <style>
+        /* Modern CSS Reset & Variable Variables */
+        :root {
+            --primary-green: #1e4620;
+            --accent-green: #2e6f40;
+            --light-green: #eaf2eb;
+            --dark-text: #2d3748;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* Main Layout Container */
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background-color: var(--light-green);
+            border-left: 5px solid var(--accent-green);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero h2 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+
+        /* News Section & Grid */
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Article Cards */
+        .card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-tag {
+            background-color: var(--light-green);
+            color: var(--accent-green);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-date {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2d3748;
+            color: #a0aec0;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">CHS News</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Updates</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Welcome Banner -->
+        <section class="hero">
+            <h2>The Unofficial CHS News Hub</h2>
+            <p>Keeping you updated on the current state of the school. Built by students, for students.</p>
+        </section>
+
+        <h3 class="section-title">Latest Updates</h3>
+        
+        <!-- Grid layout for your future articles -->
+        <div class="news-grid">
+            
+            <!-- Card 1 -->
+            <article class="card">
+                <div class="card-content">
+                    <span class="card-tag">School State</span>
+                    <h4 class="card-title">Welcome to the New Website</h4>
+                    <p class="card-date">September 2, 2026</p>
+                    <p>We've successfully moved our hosting to an unblocked network platform to ensure everyone can stay informed.</p>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="card">
+                <div class="card-content">
+                    <span class="card-tag">Bell Times</span>
+                    <h4 class="card-title">Upcoming Schedule Modifications</h4>
+                    <p class="card-date">September 2, 2026</p>
+                    <p>Keep an eye out for modified timetables next week due to upcoming school events and assemblies.</p>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="card">
+                <div class="card-content">
+                    <span class="card-tag">Tech Tip</span>
+                    <h4 class="card-title">Bypassing Network Restrictions</h4>
+                    <p class="card-date">September 2, 2026</p>
+                    <p>Make sure to bookmark this clean URL layout so you can easily pull it up on any school-managed BYOD equipment.</p>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Footer Note -->
+    <footer>
+        <p>&copy; 2026 CHS News. This site is completely unofficial and independent.</p>
+    </footer>
+
+</body>
+</html>
