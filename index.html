@@ -129,9 +129,8 @@
 
         <h3 class="section-title">Latest Updates</h3>
         
-        <!-- This grid starts empty and fills up automatically via JavaScript -->
         <div class="news-grid" id="newsGrid">
-            <p>Loading news articles...</p>
+            <p>Loading news updates...</p>
         </div>
     </main>
 
@@ -140,26 +139,50 @@
     </footer>
 
     <script>
-        // Fetch news directly from your dashboard's data file
-        fetch('./articles.json')
-            .then(response => response.json())
-            .then(data => {
-                const grid = document.getElementById('newsGrid');
-                grid.innerHTML = ''; // Clear loading text
+        // REPLACE THE STRING BELOW WITH YOUR ENTIRE PUBLISHED GOOGLE SHEET CSV LINK
+        const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-r5sFj0XGZpcFyqoRKNk-BH0gD-dGmFSXLUOsJlo8CJIVELYmIGee7rCJF0CK5rwP6jKC-ZQM2KNB/pub?output=csv';
 
-                if (!data.articles || data.articles.length === 0) {
-                    grid.innerHTML = '<p>No updates posted yet.</p>';
+        // Simple CSV parser function to process the layout rows cleanly
+        function parseCSV(text) {
+            const lines = text.split('\n');
+            const result = [];
+            const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+            
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i]) continue;
+                // Basic split handling quotes around content briefs
+                const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(cell => cell.trim().replace(/^"|"$/g, ''));
+                const obj = {};
+                for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = currentline[j];
+                }
+                result.push(obj);
+            }
+            return result;
+        }
+
+        // Fetch updates dynamically 
+        fetch(sheetCsvUrl)
+            .then(res => res.text())
+            .then(csvData => {
+                const articles = parseCSV(csvData);
+                const grid = document.getElementById('newsGrid');
+                grid.innerHTML = ''; 
+
+                if (articles.length === 0) {
+                    grid.innerHTML = '<p>No news articles found in data sheets.</p>';
                     return;
                 }
 
-                // Loop through posts backwards to show newest first
-                data.articles.reverse().forEach(article => {
+                // Show the newest spreadsheet rows first
+                articles.reverse().forEach(article => {
+                    if(!article.title) return; // Skip blank rows
                     const card = document.createElement('article');
                     card.className = 'card';
                     card.innerHTML = `
                         <div class="card-content">
-                            <span class="card-tag">${article.category || 'Update'}</span>
-                            <h4 class="card-title">${article.title || 'Untitled'}</h4>
+                            <span class="card-tag">${article.category || 'General'}</span>
+                            <h4 class="card-title">${article.title}</h4>
                             <p class="card-date">${article.date || ''}</p>
                             <p>${article.body || ''}</p>
                         </div>
@@ -168,7 +191,7 @@
                 });
             })
             .catch(err => {
-                document.getElementById('newsGrid').innerHTML = '<p>Create your first post in Pages CMS to view updates!</p>';
+                document.getElementById('newsGrid').innerHTML = '<p>Error syncing data from updates panel.</p>';
             });
     </script>
 </body>
